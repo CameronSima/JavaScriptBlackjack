@@ -19,5 +19,14 @@ describe('Deck tests', function() {
         deck2.cards.forEach(function(card, i) {
             expect(card).toEqual(deck.cards[i]);
         })
+    });
+    
+    it('can be dealt from', function() {
+        
+        var card = deck.dealOne();
+        
+        expect(card).toBeDefined();
+        expect(deck.cards.length).toBe(51);
     })
+    
 });

@@ -10,11 +10,19 @@ class Deck {
     constructor() {
         this.values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'];
         this.ranks = ['Hearts', 'Diamonds', 'Spades', 'Clubs'];
-        this.cards = this.getCards();
+        this.cards;
+        populate.bind(this)();
     }
- 
-    getCards() {
-        return this.ranks.map(function(rank) {
+   
+    dealOne() {
+        return this.cards.pop();
+    }
+    
+    
+}
+
+function populate() {
+        this.cards = this.ranks.map(function(rank) {
                     return this.values.map(function(value) {
                         return new Card(value, rank)
                     })
@@ -22,6 +30,4 @@ class Deck {
                 .reduce(function(acc, curr) {
                     return acc.concat(curr);
                 }, [])
-    } 
-
-}
+    };
