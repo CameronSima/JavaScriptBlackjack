@@ -44,8 +44,24 @@ class Dealer extends Player {
         this.deck = deck;
     }
     
+    shuffle() {
+        var cards = this.deck.cards;
+        for (var i = cards.length-1; i>0; i--) {
+            var j = Math.floor(Math.random() * (i+1));
+            var temp = cards[i];
+            cards[i] = cards[j];
+            cards[j] = temp;
+        }
+    }
+    
     dealCard() {
         return this.deck.dealOne();
+    }
+    
+    dealInitialHand(player) {
+        [1, 2].forEach(function(index) {
+            player.hand.addCard(this.dealCard());
+        }, this);  
     }
     
     cardsShowing() {
