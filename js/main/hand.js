@@ -3,6 +3,14 @@ class Hand {
         this.cards = [];
     }
     
+    toString() {
+        var result = '';
+        this.cards.forEach(function(card) {
+            result += card.toString() + '; '
+        })
+        return result;
+    }
+    
     addCard(card) {
         this.cards.push(card);
     }
