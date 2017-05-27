@@ -32,12 +32,32 @@ describe('Dealer tests', function() {
         
         var lastOrder = deck;
         
-        // shuffled 100 times, the deck is never the same twice.
-        for (var i=0; i<100; i++) {
+        for (var i=0; i<50; i++) {
             dealer.shuffle();
             expect(deck.cards).not.toEqual(lastOrder);
             lastOrder = deck;
         }
+    });
+    
+    it('Dealer cardsShowing method shows the right cards', function() {
+        
+        var card1 = new Card(5, 'Clubs');
+        var card2 = new Card(10, 'Spades');
+        dealer.hand.addCard(card1);
+        dealer.hand.addCard(card2);
+        
+        expect(dealer.cardsShowing().toString()).toEqual(card1.toString());
+        
+        var card3 = new Card('A', 'Diamonds');
+        dealer.hand.addCard(card3);
+        
+        expect(dealer.cardsShowing().length).toEqual(2);
+        expect(dealer.cardsShowing()[1]).toEqual(card3);
+    })
+    
+    it('Dealer has a lot of money', function() {
+        
+        expect(dealer.bank).toEqual(10000000);
     })
     
 })
