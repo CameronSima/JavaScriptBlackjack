@@ -53,11 +53,11 @@ describe('Dealer tests', function() {
         
         expect(dealer.cardsShowing().length).toEqual(2);
         expect(dealer.cardsShowing()[1]).toEqual(card3);
-    })
+    });
     
     it('Dealer has a lot of money', function() {
         
         expect(dealer.bank).toEqual(10000000);
-    })
+    });
     
-})
+});

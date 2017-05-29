@@ -2,11 +2,35 @@
 <html>
     <head>
         <title>Javascript Blackjack</title>
+        <link rel="stylesheet" href="/styles/main.css">
     </head>
     <body>
+        <div id="display">
+            Welcome to Javascript Blackjack. Good luck!
+        </div>
+        <div id="userPrompt">
+            Enter your bet: 
+        </div>
+        <div>
+            <input type="text" id ="input" >
+            <button id="hitButton" onclick="handleHit()"value="Enter" >Hit</button>
+            <button id="stayButton" onclick="handleStay()"value="Enter" >Stay</button>
+            <button id="splitButton" onclick="handleSplit()" value="Enter" >Split</button>
+            <button id="enterButton" value="Enter" >Enter</button>
+        </div>
+        <script>
+            var display = document.getElementById('display');
+            var prompt = document.getElementById('userPrompt');
+            var input = document.getElementById('input');
+            var hitButton = document.getElementById('hitButton');
+            var stayButton = document.getElementById('stayButton');
+            var splitButton = document.getElementById('splitButton');
+            var enterButton = document.getElementById('enterButton');
+        </script>
         <script type="text/javascript" src="/js/main/player.js"></script>
         <script type="text/javascript" src="/js/main/card.js"></script>
         <script type="text/javascript" src="/js/main/hand.js"></script>
-        <script type="text/javascript" src="/js/main/game.js"></script>    
+        <script type="text/javascript" src="/js/main/game.js"></script>
+        
     </body>
 </html>

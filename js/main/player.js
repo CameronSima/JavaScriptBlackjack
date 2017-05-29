@@ -9,10 +9,23 @@ class Player {
     placeBet(bet) {
         this.bet = bet <= this.bank ? bet : this.bank;
         this.bank -= this.bet;
+        console.log(this.bank)
     }
     
     hit(card) {
         this.hand.addCard(card);
+    }
+    
+    win() {
+        this.bank += this.bet * 2;
+    }
+    
+    busts() {
+        return this.hand.getPoints() > 21;
+    }
+    
+    winOnBlackJack() {
+        this.bank += this.bet * 1.5;
     }
     
     split() {
@@ -51,6 +64,13 @@ class Dealer extends Player {
             var temp = cards[i];
             cards[i] = cards[j];
             cards[j] = temp;
+        }
+    }
+    
+    takeTurn() {
+        var points = this.hand.getPoints();
+        while (this.hand.getPoints() < 17) {
+            this.hit(this.dealCard());
         }
     }
     

@@ -1,0 +1,24 @@
+body {
+    font-family: Courier;
+    font-size: 26px;
+}
+
+#input {
+    position: absolute !important;
+    bottom: 10px !important;
+}
+
+#userPrompt {
+    position: absolute !important;
+    bottom: 80px !important;
+}
+
+#enterButton {
+    position: absolute;
+    bottom: 10px;
+    left: 350px;
+}
+
+#hitButton, #stayButton, #splitButton {
+    display: none;
+}

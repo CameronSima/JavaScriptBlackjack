@@ -21,6 +21,7 @@ class Hand {
     
     getPoints() {
         var result = this.sum();
+        console.log(this.numAces())
         this.numAces().forEach(function(ace) {
             if (result > 21) {
                 result -= 10;
@@ -30,10 +31,8 @@ class Hand {
     }
  
     numAces() {
-        return this.cards.map(function(card) {
-            if (card.value == 'A') {
-                return card;
-            }
+        return this.cards.filter(function(card) {
+            return card.value == 'A';
         })
     }
     
