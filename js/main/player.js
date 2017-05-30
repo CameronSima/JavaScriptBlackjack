@@ -48,6 +48,10 @@ class Player {
     hasSplitHands() {
         return this.splits.length == 2 && this.hand.cards.length == 0;
     }
+    
+    hasBlackJack() {
+        return this.hand.cards.length == 2 && this.hand.getPoints() == 21;
+    }
 }
 
 class Dealer extends Player {

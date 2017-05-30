@@ -41,6 +41,18 @@ describe('Player Tests', function() {
         expect(player.hand.cards[2]).toBe(card);
     })
     
+    it('Hits blackjack!', function() {
+        var hand = new Hand();
+        var card1 = new Card('J', 'Clubs');
+        var card2 = new Card('A', 'Diamonds');
+        hand.addCard(card1);
+        hand.addCard(card2);
+        
+        player.hand = hand;
+        
+        expect(player.hasBlackJack()).toBe(true);
+    });
+    
     it('Hit split hand', function() {
         
         player.split();

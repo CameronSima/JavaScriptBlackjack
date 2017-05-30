@@ -25,16 +25,6 @@ describe('BlackJackHand Tests', function() {
         expect(hand.getPoints()).toEqual(17);
     })
     
-    it('Hits blackjack!', function() {
-        var hand = new Hand();
-        var card1 = new Card('J', 'Clubs');
-        var card2 = new Card('A', 'Diamonds');
-        hand.addCard(card1);
-        hand.addCard(card2);
-        
-        expect(hand.hasBlackJack()).toBe(true);
-    })
-    
     it('split is possible', function() {
         var hand = new Hand();
         var card1 = new Card('8', 'Clubs');
