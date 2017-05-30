@@ -21,7 +21,6 @@ class Hand {
     
     getPoints() {
         var result = this.sum();
-        console.log(this.numAces())
         this.numAces().forEach(function(ace) {
             if (result > 21) {
                 result -= 10;

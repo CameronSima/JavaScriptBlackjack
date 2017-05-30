@@ -16,15 +16,15 @@ class Game {
     }
     
     setUPButtonHandlers() {
-        enterButton.onclick = this.handleGetBet.bind(this);
-        hitButton.onclick = this.handleHit.bind(this);
-        stayButton.onclick = this.handleStay.bind(this);
-        splitButton.onclick = this.handleSplit.bind(this);   
+        domElements.enterButton.onclick = this.handleGetBet.bind(this);
+        domElements.hitButton.onclick = this.handleHit.bind(this);
+        domElements.stayButton.onclick = this.handleStay.bind(this);
+        domElements.splitButton.onclick = this.handleSplit.bind(this);   
     }
     
     getBet(message) {
-        input.style.display  = 'inline-block';
-        prompt.innerHTML = message || 'Enter your bet:';  
+        domElements.input.style.display  = 'inline-block';
+        domElements.prompt.innerHTML = message || 'Enter your bet:';  
     }
     
     playRound() {
@@ -55,6 +55,7 @@ class Game {
     }
 
     handleGetBet(prompt) {
+        console.log(this)
         var bet = input.value;
         if (bet > this.player.bank) {
             alert("You don't have $" + bet + ", but we'll take the $" + this.player.bank + " you've got.");
@@ -68,19 +69,19 @@ class Game {
     }
     
     displayCards() {
-        display.innerHTML = 'You Have: '
+        domElements.display.innerHTML = 'You Have: '
         
         if (this.player.hasSplitHands()) {
             this.displaySplitHands();
         } else {
-            display.innerHTML += this.player.hand.toString() + '<br>';
+            domElements.display.innerHTML += this.player.hand.toString() + '<br>';
         }
-        display.innerHTML += 'Dealer is showing: ' + this.dealer.cardsShowing() + '<br>';
+        domElements.display.innerHTML += 'Dealer is showing: ' + this.dealer.cardsShowing() + '<br>';
     }
     
     displaySplitHands() {
         this.player.splits.forEach(function(hand, index) {
-            display.innerHTML += '<br> Hand ' + (index+1) + ': ' + hand.toString();
+            domElements.display.innerHTML += '<br> Hand ' + (index+1) + ': ' + hand.toString();
             }.bind(this))
     }
     
@@ -117,17 +118,17 @@ class Game {
     
     showResults(result) {
         this.hideGameButtons();
-        display.innerHTML = 'You have: ' + this.player.hand.toString() + '<br>';
-        display.innerHTML += 'Dealer has: ' + this.dealer.hand.toString() + '<br>';
-        display.innerHTML += "You " + result + "! <br> Your balance is now " + '$' + player.bank  + "<br>";
+        domElements.display.innerHTML = 'You have: ' + this.player.hand.toString() + '<br>';
+        domElements.display.innerHTML += 'Dealer has: ' + this.dealer.hand.toString() + '<br>';
+        domElements.display.innerHTML += "You " + result + "! <br> Your balance is now " + '$' + player.bank  + "<br>";
         this.promptPlayAgain();
     }
     
     promptPlayAgain() {
-        prompt.style.display = "inline-block";
-        enterButton.style.display = "inline-block";
-        prompt.innerHTML = "Play again?"
-        enterButton.onclick = function() {
+        domElements.prompt.style.display = "inline-block";
+        domElements.enterButton.style.display = "inline-block";
+        domElements.prompt.innerHTML = "Play again?"
+        domElements.enterButton.onclick = function() {
             this.player.hand = new Hand();
             var game = new Game(this.player);
             game.start();
@@ -135,7 +136,7 @@ class Game {
     }
     
     showGameButtons() {
-        [hitButton, stayButton].forEach(function(button) {
+        [domElements.hitButton, domElements.stayButton].forEach(function(button) {
             if (button.id != 'splitButton' || player.hand.isSplittable()) {
                 button.style.display = 'inline-block';
             }
@@ -143,19 +144,19 @@ class Game {
     }
     
     hideGameButtons() {
-        [hitButton, stayButton, splitButton].forEach(function(button) {
+        [domElements.hitButton, domElements.stayButton, domElements.splitButton].forEach(function(button) {
             button.style.display = "none";
         })
     }
     
     hideBetInput() {
-        input.style.display = 'none';
-        prompt.style.display = 'none';
-        enterButton.style.display = 'none';
+        domElements.input.style.display = 'none';
+        domElements.prompt.style.display = 'none';
+        domElements.enterButton.style.display = 'none';
 }
        
     displayHand() {
-        display.innerHTML = this.player.hand.toString();
+        domElements.display.innerHTML = this.player.hand.toString();
     }
     
     clearAll() {
@@ -165,15 +166,15 @@ class Game {
     }
     
     clearInput() {
-        input.value = "";
+        domElements.input.value = "";
     }
     
     clearPrompt() {
-        prompt.innerHTML = "";
+        domElements.prompt.innerHTML = "";
     }
     
     clearDisplay() {
-        display.innerHTML = "";
+        domElements.display.innerHTML = "";
     }
 }
 
