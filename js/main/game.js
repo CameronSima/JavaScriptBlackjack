@@ -135,7 +135,7 @@ class Game {
     }
     
     showGameButtons() {
-        [hitButton, stayButton, splitButton].forEach(function(button) {
+        [hitButton, stayButton].forEach(function(button) {
             if (button.id != 'splitButton' || player.hand.isSplittable()) {
                 button.style.display = 'inline-block';
             }
