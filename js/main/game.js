@@ -29,11 +29,19 @@ class Game {
     
     playRound() {
         this.setUpGameDisplay();
+        this.initialDeal();
+        this.displayCards(); 
+        this.checkBlackJack();
+    }
+    
+    initialDeal() {
         this.dealer.shuffle();
         [this.player, this.dealer].forEach(function(player) {
             this.dealer.dealInitialHand(player);
         }.bind(this))
-        this.displayCards(); 
+    }
+    
+    checkBlackJack() {
         if (this.player.hasBlackJack()) {
             this.player.winOnBlackJack();
             this.showResults('win');
@@ -61,15 +69,19 @@ class Game {
     
     displayCards() {
         display.innerHTML = 'You Have: '
+        
         if (this.player.hasSplitHands()) {
-            
-            this.player.splits.forEach(function(hand, index) {
-                display.innerHTML += '<br> Hand ' + (index+1) + ': ' + hand.toString();
-            })
+            this.displaySplitHands();
         } else {
             display.innerHTML += this.player.hand.toString() + '<br>';
         }
         display.innerHTML += 'Dealer is showing: ' + this.dealer.cardsShowing() + '<br>';
+    }
+    
+    displaySplitHands() {
+        this.player.splits.forEach(function(hand, index) {
+            display.innerHTML += '<br> Hand ' + (index+1) + ': ' + hand.toString();
+            }.bind(this))
     }
     
     handleHit() {
@@ -91,8 +103,7 @@ class Game {
     }
     
     handleSplit() {
-        this.player.split();
-        
+        this.player.split();  
     }
     
     endRound() {
@@ -113,11 +124,10 @@ class Game {
     }
     
     promptPlayAgain() {
-         prompt.style.display = "inline-block";
+        prompt.style.display = "inline-block";
         enterButton.style.display = "inline-block";
-         prompt.innerHTML = "Play again?"
+        prompt.innerHTML = "Play again?"
         enterButton.onclick = function() {
-            
             this.player.hand = new Hand();
             var game = new Game(this.player);
             game.start();
